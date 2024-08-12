@@ -10,9 +10,14 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</http:listener-config>
 	<flow name="deployusingjenkinsFlow" doc:id="6b463409-be37-4b74-a55c-e0ef27258677" >
 		<http:listener doc:name="Listener" doc:id="f3e1dbbc-b4e2-45f8-b10d-f60ce8ff6664" config-ref="HTTP_Listener_config" path="/jenkins"/>
-		<ee:transform doc:name="Transform Message" doc:id="8492958d-050d-4d23-8dd6-22f7fbd67999" >
+		<ee:transform doc:name="Transform Message" doc:id="42f02c7c-adc1-4a83-8874-d851bc2815b9" >
 			<ee:message >
-				<ee:set-payload ><![CDATA["Hello From Studio"]]></ee:set-payload>
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"Status": "Hello from Studio"
+}]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
 	</flow>
